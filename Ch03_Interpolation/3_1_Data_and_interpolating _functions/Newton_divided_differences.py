@@ -32,7 +32,6 @@ def Newton_divided_difference(point_x, point_y):
     points = np.array([point_x, point_y], dtype=np.float64).T
     n = len(points)
     coef_array = np.zeros(n)
-    t = sympy.Symbol("x")
 
     for i in range(n):
         coef_array[i] = coef(points[:i + 1])
