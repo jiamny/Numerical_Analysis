@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from jupyterthemes.jtplot import figsize
-
 
 #def least_square(A, b):
 #    return np.linalg.inv(np.dot(A.T, A)).dot(A.T).dot(b)
