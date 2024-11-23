@@ -118,6 +118,28 @@ s_interval = find_interval(f, a, b, tol, y_boundary)
 t, y = Shooting(f, a, b, tol, y_boundary, s_interval)
 
 print("Interval: [%.4f, %.4f]" % (s_interval[0], s_interval[1]))
+print(y[1][0])
+plt.plot(t, y[0], label="Solution")
+plt.legend()
+plt.show()
+
+print('-'*100)
+print("Find all solutions of the boundary value problem y'' = 4y, y(0) = 1, y(1) = 3:")
+print('-'*100)
+tol = 1e-8
+a, b = 0, 1
+y_boundary = 1, 3
+
+def f(t, y):
+    y1, y2 = y
+    equation = [y2, 4*y1]
+    return np.array(equation)
+
+s_interval = find_interval(f, a, b, tol, y_boundary)
+t, y = Shooting(f, a, b, tol, y_boundary, s_interval)
+
+print("Interval: [%.4f, %.4f]" % (s_interval[0], s_interval[1]))
+print(y[1][0])
 
 plt.plot(t, y[0], label="Solution")
 plt.legend()
