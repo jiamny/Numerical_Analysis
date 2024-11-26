@@ -1,7 +1,5 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import sympy as sym
-from mpl_toolkits.mplot3d import Axes3D
 
 def heatfd(xl, xr, yb, yt, M, N):
     f = lambda x: np.power(np.sin(2 * np.pi * x), 2)
@@ -20,13 +18,10 @@ def heatfd(xl, xr, yb, yt, M, N):
     lside = l(yb + np.arange(n) * k)
     rside = r(yb + np.arange(n) * k)
 
-    x = sym.Symbol('x')
-    expr = sym.sin(2 * sym.pi * x) ** 2
-    #     expr = sym.diff(expr, x)
-
     w = np.zeros(n * m).reshape(n, m).astype(np.float128)
-    for i in range(m):
-        w[0, i] = expr.subs(x, xl + (i + 1) * h).evalf()
+    for i in range(1, M, 1):
+        x = i*h
+        w[0, i-1] = f(x)
 
     for j in range(n - 1):
         ww = np.zeros(m)
@@ -43,7 +38,7 @@ def heatfd(xl, xr, yb, yt, M, N):
     return w, X, T
 
 print('-'*100)
-print("Forward difference method for heat equation: for D = 1,with initial condition f (x) = sin(2πx)**2 \n\
+print("Forward difference method to the heat equation: for D = 1,with initial condition f (x) = sin(2πx)**2 \n\
 and boundary conditions u(0, t) = u(1, t) = 0 for all time t.")
 print('-'*100)
 xL, xR = 0, 1 # space interval
