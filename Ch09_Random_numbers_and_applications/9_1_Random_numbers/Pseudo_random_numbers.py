@@ -1,3 +1,4 @@
+import time
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -18,32 +19,32 @@ for i in range(10):
 print('-'*100)
 print("Minimal standard random number generator")
 print('-'*100)
-def Minimal_standard_random_number_generator(a, m, x):
+def Minimal_standard_random_number_generator(x):
+    a = int(pow(7, 5))
+    m = int(pow(2, 31)) - 1
     x = a * x % m
     u = x/m
     return u, x
 
-x = 1
-a = int(pow(7, 5))
-m = int(pow(2, 31))-1
+x = time.time()
 
 for i in range(10):
-    r, x = Minimal_standard_random_number_generator(a, m, x)
+    r, x = Minimal_standard_random_number_generator(x)
     print(r)
 
 print('-'*100)
 print("The randu generator")
 print('-'*100)
-def randu_generator(a, m, x):
+def randu_generator(x):
+    a = int(pow(2, 16) + 3)
+    m = int(pow(2, 31))
     x = a * x % m
     u = x/m
     return u, x
 
-x = 1
-a = int(pow(2, 16) + 3)
-m = int(pow(2, 31))
+x = time.time()
 for i in range(10):
-    r, x = randu_generator(a, m, x)
+    r, x = randu_generator(x)
     print(r)
 
 fig = plt.figure(figsize=(12, 6))
@@ -64,9 +65,9 @@ total_iterations = 20000
 
 # Process
 for i in range(total_iterations):
-    u1, x = randu_generator(a, m, x)
-    u2, x = randu_generator(a, m, x)
-    u3, x = randu_generator(a, m, x)
+    u1, x = randu_generator(x)
+    u2, x = randu_generator(x)
+    u3, x = randu_generator(x)
     datax = np.append(datax, u1)
     datay = np.append(datay, u2)
     dataz = np.append(dataz, u3)
@@ -88,13 +89,13 @@ datay = np.array([])
 dataz = np.array([])
 a = int(pow(7, 5))
 m = int(pow(2, 31))-1
-x = 3
+x = time.time()
 total_iterations = 20000
 
 for i in range(total_iterations):
-    u1, x = Minimal_standard_random_number_generator(a, m, x)
-    u2, x = Minimal_standard_random_number_generator(a, m, x)
-    u3, x = Minimal_standard_random_number_generator(a, m, x)
+    u1, x = Minimal_standard_random_number_generator(x)
+    u2, x = Minimal_standard_random_number_generator(x)
+    u3, x = Minimal_standard_random_number_generator(x)
     datax = np.append(datax, u1)
     datay = np.append(datay, u2)
     dataz = np.append(dataz, u3)
